@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     modalContent.style.width = "50%";
     modalContent.style.boxShadow = "0 5px 15px rgba(0, 0, 0, 0.3)"; 
 
+
+
     const closeBtn = document.createElement("span");
     closeBtn.textContent = "x";
     closeBtn.style.cursor = "pointer";
@@ -21,6 +23,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     closeBtn.addEventListener("click", function () {
         modal.style.display = "none";
         clearImageSelection();
+    });
+
+    modal.addEventListener("click", function (event) {
+        if (event.target === modal) { // Vérifie si le clic est sur l'arrière-plan de la modale
+            modal.style.display = "none";
+            clearImageSelection(); // Appelez votre fonction pour nettoyer la sélection d'image si nécessaire
+        }
     });
 
     const galleryTitle = document.createElement("h2");
@@ -60,6 +69,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     addPhotoBtn.style.fontSize = "14px";
     addPhotoBtn.style.fontFamily = "Syne";
     addPhotoBtn.style.cursor = "pointer";
+    
 
     function clearImageSelection() {
         const imagePreview = document.getElementById("imagePreview");
@@ -177,7 +187,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     titleLabel.textContent = "Titre";
     titleLabel.style.display = "block";
     titleLabel.style.marginBottom = "5px";
-    titleLabel.style.marginLeft="55px";
 
     const titleInput = document.createElement("input");
     titleInput.type = "text";
@@ -189,12 +198,12 @@ document.addEventListener("DOMContentLoaded", async function () {
     titleInput.style.borderRadius = "5px";
     titleInput.style.border = "1px solid #ccc";
 
+
     const categoryLabel = document.createElement("label");
     categoryLabel.htmlFor = "category";
     categoryLabel.textContent = "Catégorie";
     categoryLabel.style.display = "block";
     categoryLabel.style.marginBottom = "5px";
-    categoryLabel.style.marginLeft="55px";
 
 
     const categorySelect = document.createElement("select");

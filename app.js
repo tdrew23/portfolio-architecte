@@ -21,6 +21,7 @@
         const portfolio = document.querySelector(".gallery");
 
         const figure = document.createElement("figure");
+        figure.setAttribute("data-id", article.id);
 
         const imageElement = document.createElement("img");
         imageElement.src = article.imageUrl;
@@ -88,6 +89,10 @@
 
    document.querySelector(".modifier").addEventListener("click",()=>{
     document.querySelector("#projectModal").style.display = "flex";
+    document.querySelector("#projectListSection").style.display="grid";
+    document.querySelector("#addPhotoBtn").style.display ="block";
+    document.querySelector("#galleryTitle").style.display = "block";
+    document.querySelector("#ajoutFormSection").style.display = "none";
 
    })
 

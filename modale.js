@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     modalContent.style.width = "50%";
     modalContent.style.boxShadow = "0 5px 15px rgba(0, 0, 0, 0.3)"; 
 
+     
+
 
 
     const closeBtn = document.createElement("span");
@@ -28,7 +30,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     modal.addEventListener("click", function (event) {
         if (event.target === modal) { // Vérifie si le clic est sur l'arrière-plan de la modale
             modal.style.display = "none";
-            clearImageSelection(); // Appelez votre fonction pour nettoyer la sélection d'image si nécessaire
+            clearImageSelection(); 
         }
     });
 
@@ -310,6 +312,8 @@ form.appendChild(categoryError);
 
             const imageContainer = document.createElement("div");
             imageContainer.style.position = "relative";
+            imageContainer.setAttribute("data-id", article.id);
+
 
             const imageElement = document.createElement("img");
             imageElement.src = article.imageUrl;
@@ -328,6 +332,9 @@ form.appendChild(categoryError);
             deleteIcon.style.backgroundColor = "black";
 
 
+           
+
+
 
           
 
@@ -340,7 +347,15 @@ form.appendChild(categoryError);
                 });
 
                 if (response.ok) {
+                   
                     imageContainer.remove(); 
+
+                     // Supprime également l'élément correspondant dans la galerie principale
+                     const mainGalleryElement = document.querySelector(`.gallery figure[data-id='${article.id}']`);
+                     if (mainGalleryElement) {
+                         mainGalleryElement.remove();
+                     }
+                    
                 } else {
                     console.error("Erreur lors de la suppression du projet :", response.statusText);
                     titleError.style.display="flex";
@@ -402,9 +417,10 @@ form.appendChild(categoryError);
                     console.log('Projet ajouté avec succès:', data);
                     clearImageSelection();
 
+
                        // Étape 1 : Ajouter dynamiquement le projet à la galerie principale
 
-            const gallery = document.querySelector("#portfolio"); // Sélectionner la galerie principale
+            const gallery = document.querySelector(".gallery"); // Sélectionner la galerie principale
             const newGalleryItem = document.createElement("figure");
             const newImage = document.createElement("img");
             const newCaption = document.createElement("figcaption");

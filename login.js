@@ -1,3 +1,5 @@
+import config from "./config.js";
+
 document.getElementById('login-form').addEventListener('submit',async (event) =>{
     event.preventDefault(); 
 
@@ -8,7 +10,7 @@ document.getElementById('login-form').addEventListener('submit',async (event) =>
 
    
 
-   const reponse = await fetch('http://localhost:5678/api/users/login',{
+   const reponse = await fetch(`${config.backendUrl}/api/users/login`,{
         method: "POST",
         headers: {"Content-Type": "application/json" },
         body:  JSON.stringify(login)

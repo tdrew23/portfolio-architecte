@@ -1,13 +1,12 @@
-
-
+import config from "./config.js";
  
 
-   const reponsePortfolio = await fetch("http://localhost:5678/api/works");
+   const reponsePortfolio = await fetch(`${config.backendUrl}/api/works`);
    const portfolioElements = await reponsePortfolio.json();
    const valeursPortfolio = JSON.stringify(portfolioElements);
 
 
-   const reponseFiltres = await fetch('http://localhost:5678/api/categories');
+   const reponseFiltres = await fetch(`${config.backendUrl}/api/categories`);
    const filtresElements =await reponseFiltres.json();
    const valeurFiltres = JSON.stringify(filtresElements);
 

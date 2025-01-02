@@ -1,3 +1,5 @@
+import config from "./config.js";
+
 document.addEventListener("DOMContentLoaded", async function () {
     const modal = document.createElement("div");
     modal.id = "projectModal";
@@ -339,7 +341,7 @@ form.appendChild(categoryError);
           
 
             deleteIcon.addEventListener("click", async function () {
-                const response = await fetch(`http://localhost:5678/api/works/${article.id}`, {
+                const response = await fetch(`${config.backendUrl}/api/works/${article.id}`, {
                     method: "DELETE",
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -404,7 +406,7 @@ form.appendChild(categoryError);
             } else {
                 categoryError.style.display = "none";
             }
-                const response = await fetch('http://localhost:5678/api/works', {
+                const response = await fetch(`${config.backendUrl}/api/works`, {
                     method: 'POST',
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -480,7 +482,7 @@ form.appendChild(categoryError);
     }
 
     try {
-        const response = await fetch("http://localhost:5678/api/works");
+        const response = await fetch(`${config.backendUrl}/api/works`);
         const portfolioElements = await response.json();
         genererPortfolioModale(portfolioElements);
         
